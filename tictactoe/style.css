@@ -1,0 +1,43 @@
+:root {
+    --grid-size: 3em;
+}
+
+body {
+    width: clamp(360px, 50%, 640px);
+    margin: 0 auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.2em;
+}
+
+main {
+    background-color: aliceblue;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, var(--grid-size));
+    grid-template-rows: repeat(3, var(--grid-size));
+    justify-content: center;
+
+    button {
+        border-style: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 2rem;
+
+        &:hover {
+            background-color: lightgray;
+        }
+    }
+
+    button:nth-child(3n + 2) {
+        border-left: 1px solid;
+        border-right: 1px solid;
+    }
+
+    button:nth-child(n + 4):nth-child(-n + 6) {
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+    }
+}
+
