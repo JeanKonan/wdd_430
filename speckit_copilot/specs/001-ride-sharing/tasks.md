@@ -40,20 +40,24 @@ This is a **prototype-focused task breakdown** targeting only the critical MVP f
   - Add Mongoose connection with pooling, error handling
   - Result: Created `lib/db.js` with cached connection, added `.env.example` and `.env.local` with `MONGODB_URI` and `JWT_SECRET`; `.gitignore` already covers `.env*`
 
-- [ ] T003 [P] Configure Tailwind CSS and global styles for consistent UI
+- [X] T003 [P] Configure Tailwind CSS and global styles for consistent UI
   - File: `app/layout.jsx`, `styles/globals.css`, `tailwind.config.js`
   - Create reusable component patterns (buttons, forms, cards)
+  - Result: Installed tailwindcss, postcss, autoprefixer; created tailwind.config.js, postcss.config.js, app/globals.css with component patterns (buttons, forms, cards, alerts, badges); updated app/layout.jsx with header/footer and globals import; created app/page.jsx home page showcasing Tailwind styling
 
-- [ ] T004 [P] Set up ESLint and Prettier for code quality
+- [X] T004 [P] Set up ESLint and Prettier for code quality
   - File: `.eslintrc.js`, `.prettierrc.js`
   - Pre-commit hooks configured
+  - Result: Created .eslintrc.json (Next.js core-web-vitals), .prettierrc.json (100 printWidth, singleQuote), .prettierignore; added npm scripts for lint and format; fixed postcss.config.js to use CommonJS syntax
 
-- [ ] T005 Create project directory structure (components, services, models, hooks, lib)
+- [X] T005 Create project directory structure (components, services, models, hooks, lib)
   - File: Root directory structure matching plan.md
+  - Result: Created directories: lib/ (utils, auth, validators, db), components/ (auth/, rides/), models/, services/, hooks/, tests/ (api/, integration/); added README placeholders in each directory
 
-- [ ] T006 [P] Configure Jest for API route testing
+- [X] T006 [P] Configure Jest for API route testing
   - File: `jest.config.js`
   - Add test database configuration
+  - Result: Installed jest, @testing-library/react, @testing-library/jest-dom, jest-environment-jsdom; created jest.config.js with coverage thresholds and path aliases; created jest.setup.js with mocks for Next.js router and MongoDB; added npm test and test:ci scripts
 
 ---
 
