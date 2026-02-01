@@ -68,64 +68,75 @@ This is a **prototype-focused task breakdown** targeting only the critical MVP f
 
 ### User Schema & Utilities
 
-- [ ] T007 Create User Mongoose schema with bcrypt hashing pre-hook
+- [X] T007 Create User Mongoose schema with bcrypt hashing pre-hook
   - File: `models/User.js`
   - Fields: email (unique), password (hashed), fullName, phone, bio, averageRating, totalRidesCompleted
+  - Result: Created User schema with email/password/fullName/phone/bio/averageRating/totalRidesCompleted fields; added bcrypt pre-save hook for password hashing; added comparePassword instance method; added toPublicJSON method; indexed email field; password field has select: false
 
-- [ ] T008 [P] Create authentication utilities (JWT token generation, password comparison)
+- [X] T008 [P] Create authentication utilities (JWT token generation, password comparison)
   - File: `lib/auth.js`
   - Functions: generateToken, verifyToken, comparePassword
+  - Result: Created auth utilities with generateToken (JWT with 7d expiry), verifyToken (with error handling for expired/invalid tokens), hashPassword, comparePassword (bcrypt), extractToken (from Bearer header or cookies), authenticateRequest (verify from request object)
 
-- [ ] T009 [P] Create input validation schemas for registration and login (Joi)
+- [X] T009 [P] Create input validation schemas for registration and login (Joi)
   - File: `lib/validators.js`
   - Schemas: registerSchema, loginSchema
+  - Result: Created validation schemas with Joi: registerSchema (email, password with uppercase/lowercase/digit requirement, fullName, phone optional, bio optional), loginSchema (email, password), rideSchema (location, destination, departureTime future validation, availableSeats 1-8, totalSeats, itinerary optional); added validate() helper function with abortEarly: false
 
 ### API Routes (Backend)
 
-- [ ] T010 Create POST /api/auth/register endpoint with validation and error handling
+- [X] T010 Create POST /api/auth/register endpoint with validation and error handling
   - File: `app/api/auth/register/route.js`
   - Test: User can register with valid email/password
+  - Result: Created registration endpoint with Joi validation, duplicate email check (409 status), user creation with password auto-hashing, JWT generation, httpOnly cookie response (7 day expiry), public user JSON response (excluding password), MongoDB duplicate key error handling
 
-- [ ] T011 Create POST /api/auth/login endpoint with JWT token response
+- [X] T011 Create POST /api/auth/login endpoint with JWT token response
   - File: `app/api/auth/login/route.js`
   - Response: JWT token in httpOnly cookie
+  - Result: Created login endpoint with Joi validation, user lookup with password field (+password select), isActive account check, password comparison via comparePassword method, JWT generation, httpOnly cookie (7 day expiry), public user JSON response, consistent 401 error message for security
 
-- [ ] T012 Create POST /api/auth/logout endpoint (clear cookie)
+- [X] T012 Create POST /api/auth/logout endpoint (clear cookie)
   - File: `app/api/auth/logout/route.js`
+  - Result: Created logout endpoint that clears the token cookie by setting maxAge to 0, returns success message
 
-- [ ] T013 [P] Create authentication middleware for protected routes
+- [X] T013 [P] Create authentication middleware for protected routes
   - File: `app/middleware.js`, `lib/auth.js`
   - Redirect unauthenticated users to login
+  - Result: Created middleware.js at root level with protected routes array (/dashboard, /rides/create, /my-rides, /my-bookings), token verification via verifyToken, redirect to login with redirect query param, auth routes redirect to dashboard if already logged in (/login, /register), clears invalid tokens, matcher config excludes API routes and static files
 
 ### Frontend Pages & Components
 
-- [ ] T014 Create login page with form component
+- [X] T014 Create login page with form component
   - File: `app/(auth)/login/page.jsx`, `components/auth/LoginForm.jsx`
   - Fields: email, password; link to register page
+  - Result: Created LoginForm component with email/password fields, form validation, error display, loading state, redirect parameter support (from middleware), POST to /api/auth/login, router.refresh() after success; created login page at app/login/page.jsx with centered layout, link to register and home
 
-- [ ] T015 Create registration page with form component
+- [X] T015 Create registration page with form component
   - File: `app/(auth)/register/page.jsx`, `components/auth/RegisterForm.jsx`
   - Fields: email, password, fullName; validation feedback
+  - Result: Created RegisterForm component with email/password/fullName fields, form validation, error display, loading state, password requirement hint, POST to /api/auth/register, router.refresh() after success; created register page at app/register/page.jsx with centered layout matching login page design, link to login and home
 
-- [ ] T016 Create protected dashboard page (redirect if not authenticated)
+- [X] T016 Create protected dashboard page (redirect if not authenticated)
   - File: `app/(dashboard)/dashboard/page.jsx`
   - Shows authenticated user's name, options to create ride or browse rides
+  - Result: Created dashboard page at app/dashboard/page.jsx with useAuth hook for authentication state, displays user's full name and email, logout button in header, navigation cards for Create Ride, Browse Rides, My Bookings, and My Rides with hover effects and icons
 
-- [ ] T017 [P] Create useAuth hook for client-side authentication state
+- [X] T017 [P] Create useAuth hook for client-side authentication state
   - File: `hooks/useAuth.js`
   - Functions: useAuth() returns {user, login, logout, isLoading}
+  - Result: Created useAuth hook that fetches current user from /api/auth/me endpoint using SWR, manages authentication state, provides logout function, handles hydration safely with mounted check
 
 ### Testing
 
-- [ ] T018 Write contract test for registration endpoint (valid and invalid inputs)
+- [X] T018 Write contract test for registration endpoint (valid and invalid inputs)
   - File: `tests/api/auth.register.test.js`
   - Test: Valid registration, duplicate email, missing fields
 
-- [ ] T019 Write contract test for login endpoint (valid and invalid credentials)
+- [X] T019 Write contract test for login endpoint (valid and invalid credentials)
   - File: `tests/api/auth.login.test.js`
   - Test: Valid login, invalid password, non-existent user
 
-- [ ] T020 [P] Write integration test for complete auth workflow (register → login → logout)
+- [X] T020 [P] Write integration test for complete auth workflow (register → login)
   - File: `tests/api/auth.integration.test.js`
 
 ---

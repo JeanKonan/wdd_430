@@ -25,14 +25,4 @@ jest.mock('next/router', () => ({
   },
 }));
 
-// Mock MongoDB connection for tests
-jest.mock('./lib/db.js', () => ({
-  __esModule: true,
-  default: jest.fn().mockResolvedValue({
-    connection: {
-      db: {
-        collection: jest.fn(),
-      },
-    },
-  }),
-}));
+
