@@ -18,3 +18,21 @@ a {
   text-decoration: none;
 }
 
+header, footer {
+  background-color: rgb(242, 88, 32);
+  color: white;
+}
+
+header {
+    div {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        padding: 1rem;
+    }
+}
+
+#logo {
+  width: 200px;
+  margin-right: 10px;
+}
