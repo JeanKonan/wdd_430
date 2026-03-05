@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/kjean/Documents/Classes/WI26/wdd_430/speckit_copilot/ride-sharing-app/app/rides/page.jsx"],"sourcesContent":["'use client';\r\n\r\nimport Link from 'next/link';\r\n\r\nexport default function BrowseRidesPage() {\r\n  return (\r\n    <div className=\"min-h-screen bg-gray-50\">\r\n      <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\">\r\n        <div className=\"mb-6\">\r\n          <Link href=\"/dashboard\" className=\"text-blue-600 hover:text-blue-500\">\r\n            ← Back to Dashboard\r\n          </Link>\r\n        </div>\r\n        <h1 className=\"text-3xl font-bold text-gray-900 mb-8\">Browse Rides</h1>\r\n        <div className=\"bg-white rounded-lg shadow p-8 text-center\">\r\n          <p className=\"text-gray-600\">Coming soon - Search and browse available rides</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;AAEA;AAFA;;;AAIe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;;8BACb,8OAAC;oBAAI,WAAU;8BACb,cAAA,8OAAC,uKAAI;wBAAC,MAAK;wBAAa,WAAU;kCAAoC;;;;;;;;;;;8BAIxE,8OAAC;oBAAG,WAAU;8BAAwC;;;;;;8BACtD,8OAAC;oBAAI,WAAU;8BACb,cAAA,8OAAC;wBAAE,WAAU;kCAAgB;;;;;;;;;;;;;;;;;;;;;;AAKvC"}}]
-}
